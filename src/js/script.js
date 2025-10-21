@@ -1,226 +1,160 @@
-// ===== SITE RAFAEL RODRIGUES - JAVASCRIPT MODERNO =====
+// Rafael Rodrigues - Website Script
+// Modern, responsive and interactive website
 
-// Configuração e constantes
-const CONFIG = {
-    SCROLL_THRESHOLD: 300,
-    ANIMATION_DELAY: 100,
-    MOBILE_BREAKPOINT: 768,
-    SCROLL_OFFSET: 80
-};
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
 
-// Classe principal do site
-class RafaelSite {
-    constructor() {
-        this.init();
+    // Navbar functionality
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+
+    // Smooth scrolling for navigation links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Scroll to top button
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+            scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            scrollToTopBtn.classList.remove('opacity-100', 'visible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Counter animation for statistics
+    function animateCounters() {
+        const counters = document.querySelectorAll('[data-counter]');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-counter'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current);
+            }, 16);
+        });
     }
 
-    init() {
-        this.setupEventListeners();
-        this.initializeComponents();
-        this.setupIntersectionObserver();
-        this.hideLoadingOverlay();
-    }
-
-    // Configuração de event listeners
-    setupEventListeners() {
-        // Navigation
-        this.setupNavigation();
-        
-        // Smooth scrolling
-        this.setupSmoothScrolling();
-        
-        // Scroll to top
-        this.setupScrollToTop();
-        
-        // Form handling
-        this.setupContactForm();
-        
-        // Mobile menu
-        this.setupMobileMenu();
-        
-        // Window events
-        window.addEventListener('scroll', this.handleScroll.bind(this));
-        window.addEventListener('resize', this.handleResize.bind(this));
-        window.addEventListener('load', this.handlePageLoad.bind(this));
-    }
-
-    // Configuração da navegação
-    setupNavigation() {
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-
-        // Navegação suave
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                this.scrollToSection(targetId);
-                
-                // Fechar menu mobile se estiver aberto
-                if (window.innerWidth < CONFIG.MOBILE_BREAKPOINT) {
-                    this.closeMobileMenu();
+    // Intersection Observer for counter animation
+    const statsSection = document.querySelector('.bg-gradient-to-r.from-primary-600');
+    if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
                 }
             });
-        });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
+    }
 
-        // Header scroll effect
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            if (scrollTop > 100) {
-                navbar.classList.add('scrolled');
-                navbar.classList.add('bg-white/98', 'shadow-lg');
-            } else {
-                navbar.classList.remove('scrolled');
-                navbar.classList.remove('bg-white/98', 'shadow-lg');
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.name || !data.email || !data.message) {
+                showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
             }
             
-            lastScrollTop = scrollTop;
-        });
-    }
-
-    // Configuração do scroll suave
-    setupSmoothScrolling() {
-        const links = document.querySelectorAll('a[href^="#"]');
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                this.scrollToSection(targetId);
-            });
-        });
-    }
-
-    // Scroll para seção específica
-    scrollToSection(targetId) {
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-            const targetPosition = targetSection.offsetTop - CONFIG.SCROLL_OFFSET;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-
-    // Configuração do botão scroll to top
-    setupScrollToTop() {
-        const scrollBtn = document.getElementById('scroll-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > CONFIG.SCROLL_THRESHOLD) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Por favor, insira um e-mail válido.', 'error');
+                return;
             }
-        });
-
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            
+            // Simulate form submission
+            showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+            this.reset();
         });
     }
 
-    // Configuração do menu mobile
-    setupMobileMenu() {
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
-
-        mobileBtn.addEventListener('click', () => {
-            this.toggleMobileMenu();
-        });
-
-        // Fechar menu ao clicar em um link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                this.closeMobileMenu();
-            });
-        });
-
-        // Fechar menu ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
-                this.closeMobileMenu();
-            }
-        });
-    }
-
-    // Alternar menu mobile
-    toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const icon = mobileBtn.querySelector('i');
-
-        if (mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.remove('hidden');
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-            mobileBtn.classList.add('text-primary-600');
-            document.body.style.overflow = 'hidden';
-        } else {
-            this.closeMobileMenu();
-        }
-    }
-
-    // Fechar menu mobile
-    closeMobileMenu() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const icon = mobileBtn.querySelector('i');
-
-        mobileMenu.classList.add('hidden');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-        mobileBtn.classList.remove('text-primary-600');
-        document.body.style.overflow = '';
-    }
-
-    // Configuração do formulário de contato
-    setupContactForm() {
-        const form = document.getElementById('contact-form');
+    // Notification system
+    function showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => notification.remove());
         
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleFormSubmit(form);
-            });
-        }
-    }
-
-    // Manipulação do envio do formulário
-    async handleFormSubmit(form) {
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        
-        try {
-            // Simular envio (substituir por API real)
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
-            submitBtn.disabled = true;
-            
-            // Simular delay de API
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            // Sucesso
-            this.showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            form.reset();
-            
-        } catch (error) {
-            // Erro
-            this.showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
-    }
-
-    // Mostrar notificação
-    showNotification(message, type = 'info') {
+        // Create notification element
         const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300 ${
+        notification.className = `notification fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 ${
             type === 'success' ? 'bg-green-500 text-white' :
             type === 'error' ? 'bg-red-500 text-white' :
             'bg-blue-500 text-white'
@@ -230,97 +164,66 @@ class RafaelSite {
             <div class="flex items-center space-x-2">
                 <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
                 <span>${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         `;
         
         document.body.appendChild(notification);
         
-        // Animar entrada
+        // Animate in
         setTimeout(() => {
             notification.classList.remove('translate-x-full');
         }, 100);
         
-        // Remover após 5 segundos
+        // Auto remove after 5 seconds
         setTimeout(() => {
             notification.classList.add('translate-x-full');
             setTimeout(() => {
-                document.body.removeChild(notification);
+                notification.remove();
             }, 300);
         }, 5000);
     }
 
-    // Configuração do Intersection Observer para animações
-    setupIntersectionObserver() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aos-animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observar elementos com data-aos
-        const animatedElements = document.querySelectorAll('[data-aos]');
-        animatedElements.forEach(el => observer.observe(el));
-    }
-
-    // Inicialização de componentes
-    initializeComponents() {
-        // Lazy loading para imagens
-        this.setupLazyLoading();
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.animate-float');
         
-        // Parallax effects
-        this.setupParallax();
-        
-        // Typing effect para o título principal SUPER RÁPIDO
-        this.setupTypingEffect();
-        
-        // Contadores animados
-        this.setupCounters();
-    }
-
-    // Configuração de lazy loading
-    setupLazyLoading() {
-        const images = document.querySelectorAll('img[data-src]');
-        
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            images.forEach(img => imageObserver.observe(img));
-        }
-    }
-
-    // Configuração de efeitos parallax
-    setupParallax() {
-        const parallaxElements = document.querySelectorAll('.parallax');
-        
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            parallaxElements.forEach(element => {
-                const speed = element.dataset.speed || 0.5;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.1);
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
         });
-    }
+    });
 
-    // Configuração do efeito de digitação LONGO E SUAVE
-    setupTypingEffect() {
+    // Service card hover effects
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Button hover effects
+    const buttons = document.querySelectorAll('.btn-primary');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Typing effect for hero title
+    function setupTypingEffect() {
         const title = document.querySelector('#home h1');
         if (!title) return;
 
@@ -332,95 +235,37 @@ class RafaelSite {
             if (i < text.length) {
                 title.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 80); // MAIS LONGO E SUAVE: 80ms entre letras
+                setTimeout(typeWriter, 80);
             }
         };
 
-        // Iniciar após uma pequena pausa para criar expectativa
-        setTimeout(typeWriter, 300);
+        // Start typing effect after a short delay
+        setTimeout(typeWriter, 500);
     }
 
-    // Configuração de contadores animados
-    setupCounters() {
-        const counters = document.querySelectorAll('.counter');
-        
-        const animateCounter = (element, target, duration = 2000) => {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            const updateCounter = () => {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
-                }
-            };
-            
-            updateCounter();
-        };
+    // Initialize typing effect
+    setupTypingEffect();
 
-        // Observar contadores
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.dataset.target);
-                    animateCounter(entry.target, target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
+    // Lazy loading for images
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('opacity-0');
+                img.classList.add('opacity-100');
+                imageObserver.unobserve(img);
+            }
         });
+    });
 
-        counters.forEach(counter => counterObserver.observe(counter));
-    }
+    images.forEach(img => {
+        imageObserver.observe(img);
+    });
 
-    // Manipuladores de eventos
-    handleScroll() {
-        // Header scroll effect já implementado acima
-        // Scroll to top já implementado acima
-    }
-
-    handleResize() {
-        // Fechar menu mobile em telas grandes
-        if (window.innerWidth >= CONFIG.MOBILE_BREAKPOINT) {
-            this.closeMobileMenu();
-        }
-    }
-
-    handlePageLoad() {
-        // Remover loading overlay
-        this.hideLoadingOverlay();
-        
-        // Inicializar animações
-        this.initializeAnimations();
-    }
-
-    // Esconder overlay de loading
-    hideLoadingOverlay() {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        if (loadingOverlay) {
-            setTimeout(() => {
-                loadingOverlay.classList.add('hidden');
-            }, 1000);
-        }
-    }
-
-    // Inicializar animações
-    initializeAnimations() {
-        // Adicionar classes de animação aos elementos
-        const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right');
-        
-        animatedElements.forEach((el, index) => {
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translate(0, 0)';
-            }, index * CONFIG.ANIMATION_DELAY);
-        });
-    }
-
-    // Utilitários
-    static debounce(func, wait) {
+    // Performance optimization: Debounce scroll events
+    function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
             const later = () => {
@@ -432,61 +277,129 @@ class RafaelSite {
         };
     }
 
-    static throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-}
+    // Optimized scroll handler
+    const optimizedScrollHandler = debounce(() => {
+        // Navbar scroll effect
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Scroll to top button visibility
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+            scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            scrollToTopBtn.classList.remove('opacity-100', 'visible');
+        }
+    }, 10);
 
-// Inicialização quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar o site
-    const site = new RafaelSite();
-    
-    // Expor para uso global (opcional)
-    window.RafaelSite = site;
-    
-    // Log de sucesso
-    console.log('🚀 Site Rafael Rodrigues carregado com sucesso!');
-    
-    // Performance monitoring
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            const loadTime = performance.now();
-            console.log(`⏱️ Página carregada em ${loadTime.toFixed(2)}ms`);
+    window.addEventListener('scroll', optimizedScrollHandler);
+
+    // Loading animation
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+        
+        // Trigger animations
+        const animatedElements = document.querySelectorAll('[data-aos]');
+        animatedElements.forEach(element => {
+            element.classList.add('aos-animate');
+        });
+    });
+
+    // Accessibility improvements
+    // Keyboard navigation for mobile menu
+    mobileMenuBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    });
+
+    // Focus management for mobile menu
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.focus();
+            }
+        });
+    });
+
+    // Smooth reveal animation for sections
+    const sections = document.querySelectorAll('section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Preload critical images
+    const criticalImages = [
+        'src/images/novaImgRafa.jpeg',
+        'src/images/Logo Original.png'
+    ];
+
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    // Service worker registration for PWA capabilities
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                })
+                .catch(function(err) {
+                    console.log('ServiceWorker registration failed');
+                });
         });
     }
+
+    // Console welcome message
+    console.log('%c🚀 Rafael Rodrigues - Advocacia e Consultoria', 'color: #0ea5e9; font-size: 20px; font-weight: bold;');
+    console.log('%c💼 Especialistas em Propriedade Intelectual', 'color: #eab308; font-size: 16px;');
+    console.log('%c📞 (17) 99722-6677 | contato@rafaelrodrigues.adv.br', 'color: #6b7280; font-size: 14px;');
 });
 
-// Service Worker Registration (opcional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registrado:', registration);
-            })
-            .catch(error => {
-                console.log('SW falhou:', error);
-            });
-    });
+// Utility functions
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const offsetTop = section.offsetTop - 80;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
 }
 
-// Error handling global
-window.addEventListener('error', (e) => {
-    console.error('Erro JavaScript:', e.error);
-    // Aqui você pode enviar erros para um serviço de monitoramento
-});
+function showLoadingSpinner() {
+    const spinner = document.createElement('div');
+    spinner.id = 'loading-spinner';
+    spinner.className = 'fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50';
+    spinner.innerHTML = '<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>';
+    document.body.appendChild(spinner);
+}
 
-// Unhandled promise rejection
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Promise rejeitada:', e.reason);
-    e.preventDefault();
-});
+function hideLoadingSpinner() {
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.remove();
+    }
+}
+
+// Export functions for global access
+window.scrollToSection = scrollToSection;
+window.showLoadingSpinner = showLoadingSpinner;
+window.hideLoadingSpinner = hideLoadingSpinner;
