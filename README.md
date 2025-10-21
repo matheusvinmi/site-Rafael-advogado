@@ -189,4 +189,4 @@ xl: 1280px  /* Extra large devices */
 
 ---
 
-**Desenvolvido com ❤️ para Rafael Rodrigues - Advocacia e Consultoria**
+**Desenvolvido para Rafael Rodrigues - Advocacia e Consultoria**

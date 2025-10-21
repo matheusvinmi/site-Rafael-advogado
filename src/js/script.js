@@ -1,62 +1,68 @@
-// Rafael Rodrigues - Website Script
-// Modern, responsive and interactive website
+// Rafael Rodrigues - Professional Website Script
+// Elegant, professional and trustworthy website
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS (Animate On Scroll)
     AOS.init({
-        duration: 800,
+        duration: 1000,
         easing: 'ease-in-out',
         once: true,
         offset: 100
     });
 
-    // Navbar functionality
-    const navbar = document.getElementById('navbar');
+    // NOVO HEADER FUNCTIONALITY
+    const header = document.querySelector('.new-header');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
-    // Navbar scroll effect
+    // Header scroll effect
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.classList.remove('scrolled');
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
         }
     });
 
     // Mobile menu toggle
     mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+        mobileMenu.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
     });
 
     // Close mobile menu when clicking on links
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
+    const mobileNavLinks = mobileMenu.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
         link.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
         });
     });
 
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+    });
+
     // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
+    const allNavLinks = document.querySelectorAll('a[href^="#"]');
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
+        if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
+            window.scrollTo({
                     top: offsetTop,
-                    behavior: 'smooth'
-                });
+                behavior: 'smooth'
+            });
             }
         });
     });
@@ -75,11 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    });
 
     // Counter animation for statistics
     function animateCounters() {
@@ -87,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         counters.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-counter'));
-            const duration = 2000; // 2 seconds
+            const duration = 2500; // 2.5 seconds
             const increment = target / (duration / 16); // 60fps
             let current = 0;
             
@@ -103,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Intersection Observer for counter animation
-    const statsSection = document.querySelector('.bg-gradient-to-r.from-primary-600');
+    const statsSection = document.querySelector('.bg-gradient-to-r.from-navy-800');
     if (statsSection) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -117,36 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(statsSection);
     }
 
-    // Contact form handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Basic validation
-            if (!data.name || !data.email || !data.message) {
-                showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showNotification('Por favor, insira um e-mail válido.', 'error');
-                return;
-            }
-            
-            // Simulate form submission
-            showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            this.reset();
-        });
-    }
 
-    // Notification system
+    // Contact buttons interaction
+    const contactButtons = document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"], a[href^="https://wa.me"]');
+    contactButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+
+    // Professional notification system
     function showNotification(message, type = 'info') {
         // Remove existing notifications
         const existingNotifications = document.querySelectorAll('.notification');
@@ -154,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create notification element
         const notification = document.createElement('div');
-        notification.className = `notification fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 ${
+        notification.className = `notification fixed top-4 right-4 z-50 p-4 rounded-lg shadow-elegant transform translate-x-full transition-transform duration-300 ${
             type === 'success' ? 'bg-green-500 text-white' :
             type === 'error' ? 'bg-red-500 text-white' :
-            'bg-blue-500 text-white'
+            'bg-navy-600 text-white'
         }`;
         
         notification.innerHTML = `
@@ -186,79 +176,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Parallax effect for hero section
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.animate-float');
-        
-        parallaxElements.forEach((element, index) => {
-            const speed = 0.5 + (index * 0.1);
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-    });
-
-    // Service card hover effects
+    // Professional hover effects for service cards
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.transform = 'translateY(-8px)';
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '';
         });
     });
 
-    // Button hover effects
+    // Professional button effects
     const buttons = document.querySelectorAll('.btn-primary');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px) scale(1.05)';
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 15px 35px rgba(30, 41, 59, 0.3)';
         });
         
         button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '';
         });
     });
 
-    // Typing effect for hero title
-    function setupTypingEffect() {
-        const title = document.querySelector('#home h1');
-        if (!title) return;
-
-        const text = title.textContent;
-        title.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                title.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80);
-            }
-        };
-
-        // Start typing effect after a short delay
-        setTimeout(typeWriter, 500);
-    }
-
-    // Initialize typing effect
-    setupTypingEffect();
+    // Typing effect removed - title displays normally
 
     // Lazy loading for images
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
+        const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
                 img.classList.remove('opacity-0');
                 img.classList.add('opacity-100');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
 
     images.forEach(img => {
         imageObserver.observe(img);
@@ -279,11 +239,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Optimized scroll handler
     const optimizedScrollHandler = debounce(() => {
-        // Navbar scroll effect
+        // Header scroll effect
         if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.classList.remove('scrolled');
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
         }
         
         // Scroll to top button visibility
@@ -319,10 +281,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Focus management for mobile menu
-    mobileMenuLinks.forEach(link => {
+    mobileNavLinks.forEach(link => {
         link.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
                 mobileMenuBtn.focus();
             }
         });
@@ -344,8 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Preload critical images
     const criticalImages = [
-        'src/images/novaImgRafa.jpeg',
-        'src/images/Logo Original.png'
+        'src/images/novaImgRafa.jpeg'
     ];
 
     criticalImages.forEach(src => {
@@ -353,23 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
         img.src = src;
     });
 
-    // Service worker registration for PWA capabilities
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js')
-                .then(function(registration) {
-                    console.log('ServiceWorker registration successful');
-                })
-                .catch(function(err) {
-                    console.log('ServiceWorker registration failed');
-                });
-        });
-    }
-
-    // Console welcome message
-    console.log('%c🚀 Rafael Rodrigues - Advocacia e Consultoria', 'color: #0ea5e9; font-size: 20px; font-weight: bold;');
-    console.log('%c💼 Especialistas em Propriedade Intelectual', 'color: #eab308; font-size: 16px;');
-    console.log('%c📞 (17) 99722-6677 | contato@rafaelrodrigues.adv.br', 'color: #6b7280; font-size: 14px;');
+    // Professional console welcome message
+    console.log('%c⚖️ Rafael Rodrigues - Advocacia e Consultoria', 'color: #1e293b; font-size: 20px; font-weight: bold;');
+    console.log('%c💼 Especialistas em Propriedade Intelectual', 'color: #f59e0b; font-size: 16px;');
+    console.log('%c📞 (17) 99722-6677 | contato@rafaelrodrigues.adv.br', 'color: #64748b; font-size: 14px;');
 });
 
 // Utility functions
@@ -388,7 +337,7 @@ function showLoadingSpinner() {
     const spinner = document.createElement('div');
     spinner.id = 'loading-spinner';
     spinner.className = 'fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50';
-    spinner.innerHTML = '<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>';
+    spinner.innerHTML = '<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-navy-600"></div>';
     document.body.appendChild(spinner);
 }
 

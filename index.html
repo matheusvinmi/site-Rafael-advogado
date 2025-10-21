@@ -21,7 +21,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -32,43 +32,40 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                        'navy': {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
                         },
-                        secondary: {
-                            50: '#fefce8',
-                            100: '#fef9c3',
-                            200: '#fef08a',
-                            300: '#fde047',
-                            400: '#facc15',
-                            500: '#eab308',
-                            600: '#ca8a04',
-                            700: '#a16207',
-                            800: '#854d0e',
-                            900: '#713f12',
+                        'gold': {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
                         }
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'slide-left': 'slideLeft 0.8s ease-out',
-                        'slide-right': 'slideRight 0.8s ease-out',
-                        'bounce-gentle': 'bounceGentle 2s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'pulse-gold': 'pulseGold 2s ease-in-out infinite alternate',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 1s ease-out',
+                        'slide-left': 'slideLeft 1s ease-out',
+                        'slide-right': 'slideRight 1s ease-out',
                         'typing': 'typing 3s steps(40, end)',
                         'blink': 'blink 1s infinite',
                     },
@@ -89,29 +86,13 @@
                             '0%': { opacity: '0', transform: 'translateX(30px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
-                        bounceGentle: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.5)' },
-                            '100%': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.8)' },
-                        },
-                        pulseGold: {
-                            '0%': { boxShadow: '0 0 20px rgba(234, 179, 8, 0.5)' },
-                            '100%': { boxShadow: '0 0 30px rgba(234, 179, 8, 0.8)' },
-                        },
                         typing: {
                             'from': { width: '0' },
                             'to': { width: '100%' },
                         },
                         blink: {
                             '0%, 50%': { borderColor: 'transparent' },
-                            '51%, 100%': { borderColor: '#0ea5e9' },
+                            '51%, 100%': { borderColor: '#f59e0b' },
                         }
                     }
                 }
@@ -121,57 +102,65 @@
     
     <!-- Custom Styles -->
     <style>
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        /* Professional typography */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .font-sans {
+            font-family: 'Inter', sans-serif;
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #0ea5e9;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0284c7;
-        }
-        
-        /* Navbar styles */
-        .navbar {
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Typing effect */
-        .typing-effect {
-            overflow: hidden;
-            border-right: 2px solid #0ea5e9;
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink 1s infinite;
-        }
-        
-        /* Gradient text */
+        /* Elegant gradients */
         .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9, #eab308);
+            background: linear-gradient(135deg, #1e293b, #f59e0b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        /* Card hover effects */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        
+        /* Professional shadows */
+        .shadow-elegant {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .shadow-professional {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(30, 41, 59, 0.3);
+        }
+        
+        /* Card styles */
         .service-card {
             transition: all 0.3s ease;
             position: relative;
@@ -185,7 +174,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
             transition: left 0.5s;
         }
         
@@ -194,36 +183,37 @@
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
-        /* Button styles */
-        .btn-primary {
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            transition: all 0.3s ease;
-            position: relative;
+        /* Typing effect */
+        .typing-effect {
             overflow: hidden;
+            border-right: 2px solid #f59e0b;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink 1s infinite;
         }
         
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        /* Professional borders */
+        .border-elegant {
+            border: 1px solid #e2e8f0;
         }
         
-        .btn-primary:hover::before {
-            left: 100%;
+        .border-gold {
+            border: 2px solid #f59e0b;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+        /* Header transparency fix */
+        #navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        #navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
         /* Responsive design */
@@ -248,122 +238,396 @@
                 font-size: 1rem;
             }
         }
+        
+        /* NOVO HEADER CSS */
+        .new-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+        
+        
+        /* Mobile Menu Button (Esquerda) */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #1e293b;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Logo */
+        .header-logo {
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: #1e293b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo-text p {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin: 0;
+        }
+        
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .desktop-nav a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .desktop-nav a:hover {
+            color: #334155;
+        }
+        
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #1e293b;
+            transition: width 0.3s ease;
+        }
+        
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-btn {
+            background-color: #1e293b !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            background-color: #334155 !important;
+            transform: translateY(-2px);
+        }
+        
+        .cta-btn::after {
+            display: none;
+        }
+        
+        /* Mobile Menu Dropdown */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: white;
+            transition: left 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .mobile-nav a {
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 1.125rem;
+            font-weight: 500;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav a:hover {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .mobile-cta {
+            background-color: #1e293b !important;
+            color: white !important;
+            text-align: center;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .mobile-cta:hover {
+            background-color: #334155 !important;
+        }
+        
+        /* Mobile Layout */
+        @media (max-width: 1024px) {
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .header-logo {
+                order: 1;
+                justify-content: flex-start;
+                flex: 1;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                order: 2;
+                margin-left: auto;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        /* Desktop Layout */
+        @media (min-width: 1025px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: none;
+            }
+            
+            .header-logo {
+                order: 1;
+                justify-content: flex-start;
+            }
+            
+            .desktop-nav {
+                order: 2;
+                display: flex;
+            }
+        }
+        
+        
+        /* Service cards uniform sizing */
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 500px;
+        }
+        
+        .service-card .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .service-card .card-description {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .service-card .card-footer {
+            margin-top: auto;
+        }
     </style>
 </head>
-<body class="font-inter bg-white text-gray-900 antialiased">
+<body class="font-sans bg-white text-navy-800 antialiased">
     
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-200/50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 sm:h-18 md:h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="#home" class="flex items-center space-x-2">
-                        <img src="src/images/Logo Original.png" alt="Rafael Rodrigues" class="h-8 sm:h-10 md:h-12 w-auto">
-                    </a>
-                </div>
+    <!-- Header -->
+    <!-- NOVO HEADER -->
+    <header class="new-header">
+        <div class="header-container">
+            <!-- Menu Mobile (Esquerda) -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
-                        Início
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#servicos" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
-                        Serviços
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#sobre" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
-                        Sobre
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#contato" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
-                        Contato
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </div>
-                
-                <!-- CTA Button -->
-                <div class="hidden md:block">
-                    <a href="#contato" class="btn-primary inline-flex items-center px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Fale Conosco
-                    </a>
-                </div>
+            <!-- Logo (Direita em Mobile, Esquerda em Desktop) -->
+            <div class="header-logo">
+                <a href="#home" class="logo-link">
+                    <div class="logo-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Rafael Rodrigues</h1>
+                        <p>Advocacia & Consultoria</p>
+                    </div>
+                </a>
+            </div>
 
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-gray-100 transition-colors">
-                    <i class="fas fa-bars text-lg sm:text-xl"></i>
-                </button>
-            </div>
+            <!-- Menu Desktop -->
+            <nav class="desktop-nav">
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#timeline">Trajetória</a>
+                <a href="#contato">Contato</a>
+                <a href="#contato" class="cta-btn">
+                    <i class="fas fa-phone"></i>
+                    Fale Conosco
+                </a>
+            </nav>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-            <div class="px-4 py-4 sm:py-6 space-y-2 sm:space-y-4">
-                <a href="#home" class="block py-2 sm:py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-sm sm:text-base">Início</a>
-                <a href="#servicos" class="block py-2 sm:py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-sm sm:text-base">Serviços</a>
-                <a href="#sobre" class="block py-2 sm:py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-sm sm:text-base">Sobre</a>
-                <a href="#contato" class="block py-2 sm:py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-sm sm:text-base">Contato</a>
-                <div class="pt-3 sm:pt-4">
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-4 sm:px-6 py-2 sm:py-3 text-white text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Fale Conosco
-                    </a>
-                </div>
-            </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div class="mobile-menu" id="mobile-menu">
+            <nav class="mobile-nav">
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#timeline">Trajetória</a>
+                <a href="#contato">Contato</a>
+                <a href="#contato" class="mobile-cta">
+                    <i class="fas fa-phone"></i>
+                    Fale Conosco
+                </a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 pt-16 sm:pt-18 md:pt-20">
         <!-- Background Elements -->
         <div class="absolute inset-0 bg-black/30"></div>
-        <div class="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-primary-500/20 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-secondary-500/20 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gray-500/10 rounded-full blur-3xl"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <!-- Content -->
-                <div class="text-center lg:text-left space-y-6 lg:space-y-8" data-aos="fade-right">
-                    <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
-                        COMPROMISSO TOTAL COM A SUA 
-                        <span class="gradient-text block sm:inline">
-                            CAUSA
-                        </span>
-                    </h1>
-                    
-                    <p class="hero-subtitle text-lg sm:text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        Proteção jurídica especializada em propriedade intelectual para sua empresa. 
-                        Expertise, inovação e resultados que fazem a diferença.
-                    </p>
+                <div class="text-center lg:text-left space-y-8" data-aos="fade-right">
+                    <div class="space-y-6">
+                        <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
+                            COMPROMISSO TOTAL COM A SUA 
+                            <span class="text-blue-300">
+                                CAUSA
+                            </span>
+                        </h1>
+                        
+                        <p class="hero-subtitle text-xl lg:text-2xl text-navy-100 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Proteção jurídica especializada em propriedade intelectual para sua empresa. 
+                            Expertise, inovação e resultados que fazem a diferença.
+                        </p>
+                    </div>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#servicos" class="btn-primary inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <a href="#servicos" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center">
                             <i class="fas fa-briefcase mr-2"></i>
                             Nossos Serviços
                         </a>
-                        <a href="#contato" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                            <i class="fab fa-whatsapp mr-2"></i>
+                        <a href="#contato" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            <i class="fas fa-phone mr-2"></i>
                             Fale Conosco
                         </a>
-                    </div>
+</div>
                 </div>
                 
                 <!-- Image -->
                 <div class="relative" data-aos="fade-left">
                     <div class="relative">
-                        <img src="src/images/novaImgRafa.jpeg" alt="Rafael Rodrigues - Advogado" class="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent rounded-2xl"></div>
-                    </div>
+                        <img src="src/images/novaImgRafa.jpeg" alt="Rafael Rodrigues - Advogado" class="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-professional">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/20 to-transparent rounded-2xl"></div>
+</div>
                     
-                    <!-- Floating elements -->
-                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-primary-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg animate-bounce-gentle">
+                    <!-- Professional badges -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
                         <i class="fas fa-gavel"></i>
-                    </div>
-                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-secondary-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg animate-bounce-gentle" style="animation-delay: -1s;">
+    </div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center text-white text-xl shadow-lg">
                         <i class="fas fa-shield-alt"></i>
-                    </div>
+        </div>
                 </div>
             </div>
         </div>
@@ -374,13 +638,203 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+                    Sobre <span class="text-blue-700">Rafael Rodrigues</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Advogado especialista em Propriedade Intelectual, formado em Direito pelo Centro Universitário de Santa Fé do Sul (2022) e aprovado em 1º lugar no Mestrado Profissional em Propriedade Intelectual e Transferência de Tecnologia na UEMG.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="bg-blue-50 p-6 rounded-2xl">
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4">Formação Acadêmica</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            <strong>Graduação:</strong> Formado em Direito pelo Centro Universitário de Santa Fé do Sul (2022)
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            <strong>Mestrado:</strong> Aprovado em 1º lugar para o Mestrado Profissional em Propriedade Intelectual e Transferência de Tecnologia na Universidade do Estado de Minas Gerais (2022), onde aprimorou seus conhecimentos em propriedade intelectual e adotou a linha de pesquisa de direitos autorais na internet.
+                        </p>
+        </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-2xl">
+                        <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4">Experiência Profissional</h3>
+                        <div class="space-y-4 text-gray-700">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mr-3 mt-1"></i>
+                                <div>
+                                    <strong>2018-2023:</strong> Envolvido na realidade de grandes escritórios, com estágio no gabinete de magistrado
+        </div>
+            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mr-3 mt-1"></i>
+                                <div>
+                                    <strong>2020:</strong> Iniciou empresa especializada em registro de marcas, paralelamente estagiando em grande escritório
+                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mr-3 mt-1"></i>
+                                <div>
+                                    <strong>2023:</strong> Efetivado como advogado, auxiliou na construção da área de propriedade intelectual
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mr-3 mt-1"></i>
+                                <div>
+                                    <strong>2024:</strong> Fundou seu próprio escritório de advocacia com foco em propriedade intelectual
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gradient-to-br from-blue-50 to-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+                    Trajetória <span class="text-blue-700">Profissional</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Conheça os marcos importantes da carreira de Rafael Rodrigues
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 to-blue-700 h-full hidden lg:block"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- 2018 -->
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start">
+                        <div class="lg:w-1/2 lg:pr-8 mb-6 lg:mb-0">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 relative">
+                                <div class="absolute -right-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm hidden lg:flex">1</div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+</div>
+                                    <div>
+                                        <h3 class="text-xl font-serif font-bold text-gray-900">2018</h3>
+                                        <p class="text-blue-600 font-semibold">Início da Graduação</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Início da graduação em Direito no Centro Universitário de Santa Fé do Sul. Desde o início já mostrava indícios da sua aptidão com o direito, sobretudo empresarial.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2"></div>
+                    </div>
+                    
+                    <!-- 2020 -->
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start">
+                        <div class="lg:w-1/2"></div>
+                        <div class="lg:w-1/2 lg:pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 relative">
+                                <div class="absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm hidden lg:flex">2</div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-rocket text-green-600 text-xl"></i>
+</div>
+                                    <div>
+                                        <h3 class="text-xl font-serif font-bold text-gray-900">2020</h3>
+                                        <p class="text-green-600 font-semibold">Primeiro Empreendimento</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Antes mesmo de finalizar a graduação e com muita sede de empreender, Rafael deu início a suas atividades com uma empresa especializada em registro de marcas, paralelamente estagiando em um grande escritório de advocacia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2022 -->
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start">
+                        <div class="lg:w-1/2 lg:pr-8 mb-6 lg:mb-0">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 relative">
+                                <div class="absolute -right-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm hidden lg:flex">3</div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-medal text-purple-600 text-xl"></i>
+</div>
+                                    <div>
+                                        <h3 class="text-xl font-serif font-bold text-gray-900">2022</h3>
+                                        <p class="text-purple-600 font-semibold">Conquistas Acadêmicas</p>
+    </div>
+        </div>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Conclusão da graduação em Direito e aprovação em 1º lugar para o Mestrado Profissional em Propriedade Intelectual e Transferência de Tecnologia na UEMG, onde aprimorou seus conhecimentos em propriedade intelectual.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2"></div>
+                    </div>
+                    
+                    <!-- 2023 -->
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start">
+                        <div class="lg:w-1/2"></div>
+                        <div class="lg:w-1/2 lg:pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 relative">
+                                <div class="absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm hidden lg:flex">4</div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-briefcase text-orange-600 text-xl"></i>
+                </div>
+                                    <div>
+                                        <h3 class="text-xl font-serif font-bold text-gray-900">2023</h3>
+                                        <p class="text-orange-600 font-semibold">Consolidação Profissional</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Efetivado como advogado no escritório em que estagiava, auxiliou na construção da área de propriedade intelectual, demonstrando expertise e liderança na área.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024 -->
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start">
+                        <div class="lg:w-1/2 lg:pr-8 mb-6 lg:mb-0">
+                            <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 shadow-xl text-white relative">
+                                <div class="absolute -right-4 top-6 w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold text-sm hidden lg:flex">5</div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-crown text-white text-xl"></i>
+                </div>
+                                    <div>
+                                        <h3 class="text-xl font-serif font-bold text-white">2024</h3>
+                                        <p class="text-blue-200 font-semibold">Fundação do Próprio Escritório</p>
+                    </div>
+                </div>
+                                <p class="text-blue-100 leading-relaxed">
+                                    Fundou seu próprio escritório de advocacia com foco em propriedade intelectual, consolidando sua trajetória como empreendedor e especialista na área.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="servicos" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
-                    Nossos <span class="gradient-text">Serviços</span>
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-gray-900 mb-6">
+                    Nossos <span class="text-blue-700">Serviços</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Proteção jurídica completa para sua empresa com expertise em propriedade intelectual
@@ -388,173 +842,311 @@
             </div>
             
             <!-- Services Grid -->
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 - Registro de Marcas -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative mb-6">
-                        <img src="src/images/1.png" alt="Registro de Marcas" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                        <img src="src/images/1.png" alt="Registro de Marcas" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
                             <i class="fas fa-trademark"></i>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Registro de Marcas</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Proteção completa da sua marca com pesquisa de viabilidade e acompanhamento até a concessão no INPI.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Registro de Marcas</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Proteja a identidade da sua empresa com o registro de marcas. Realizamos pesquisas de viabilidade e conduzimos todo o processo junto ao INPI até a concessão da sua marca.
+                            </p>
                         </div>
-                        <span class="text-sm text-gray-500 font-medium">+500 casos</span>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">+500 casos</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
                     </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <!-- Service Card 2 - Patentes e Desenhos Industriais -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative mb-6">
-                        <img src="src/images/2png.jpg" alt="Patentes e Desenhos Industriais" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                        <img src="src/images/2png.jpg" alt="Patentes e Desenhos Industriais" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
                             <i class="fas fa-lightbulb"></i>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Patentes e Desenhos Industriais</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Proteção de suas invenções e designs com protocolo completo no INPI e acompanhamento especializado.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Depósitos de Patentes e Desenhos Industriais</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Se você desenvolveu uma tecnologia ou design de produto, auxiliamos no protocolo do pedido no INPI e acompanhamos o processo até a concessão.
+                            </p>
                         </div>
-                        <span class="text-sm text-gray-500 font-medium">+500 casos</span>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Especializado</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
                     </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <!-- Service Card 3 - Registro de Software -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative mb-6">
-                        <img src="src/images/3png.jpg" alt="Registro de Software" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                        <img src="src/images/3png.jpg" alt="Registro de Software" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
                             <i class="fas fa-code"></i>
+                </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Registro de Software</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Garanta a proteção do seu código fonte com o registro de software, assegurando seus direitos autorais e evitando uso indevido por terceiros.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Proteção Total</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Registro de Software</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Proteção internacional do seu código fonte com registro especializado e acompanhamento completo.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500 font-medium">Especializado</span>
-                    </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
                 </div>
                 
-                <!-- Service Card 4 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                <!-- Service Card 4 - Direitos Autorais -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
                     <div class="relative mb-6">
-                        <img src="src/images/4png.jpeg" alt="Direitos Autorais" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                        <img src="src/images/4png.jpeg" alt="Direitos Autorais" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
                             <i class="fas fa-copyright"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Direitos Autorais</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Registro e proteção de suas obras intelectuais nos órgãos competentes para evitar disputas de autoria.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500 font-medium">Proteção Total</span>
-                    </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
                 </div>
-                
-                <!-- Service Card 5 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Registro de Direitos Autorais</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Formalize a autoria de suas obras literárias, artísticas ou científicas, prevenindo disputas sobre a autoria e garantindo seus direitos.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Formalização</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                        </div>
+                        
+                <!-- Service Card 5 - Contratos Empresariais -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
                     <div class="relative mb-6">
-                        <img src="src/images/5png.jpeg" alt="Contratos Empresariais" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                        <img src="src/images/5png.jpeg" alt="Contratos Empresariais" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
                             <i class="fas fa-file-contract"></i>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Contratos Empresariais</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Elaboração e revisão de contratos empresariais com foco na proteção dos seus interesses e direitos.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Contratos Empresariais</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Elaboramos contratos de transferência de tecnologia, sociais, memorandos de entendimento e contratos de investimento, reduzindo riscos jurídicos e assegurando clareza nas relações comerciais.
+                            </p>
                         </div>
-                        <span class="text-sm text-gray-500 font-medium">Personalizado</span>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Personalizado</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
                     </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
                 </div>
                 
-                <!-- Service Card 6 -->
-                <div class="service-card bg-white rounded-2xl lg:rounded-3xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                <!-- Service Card 6 - Procedimentos Internacionais -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="600">
                     <div class="relative mb-6">
-                        <img src="src/images/6png.jpg" alt="Consultoria Jurídica" class="w-full h-40 object-cover rounded-xl lg:rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-800/90 via-primary-700/50 to-transparent rounded-xl lg:rounded-2xl"></div>
-                        <div class="absolute bottom-3 left-3 w-14 h-14 bg-primary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
-                            <i class="fas fa-handshake"></i>
+                        <img src="src/images/6png.jpg" alt="Procedimentos Internacionais" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-globe"></i>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Consultoria Jurídica</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Orientação especializada em propriedade intelectual para tomada de decisões estratégicas da sua empresa.
-                    </p>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex text-secondary-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Procedimentos Internacionais</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Auxiliamos na proteção da propriedade intelectual da sua empresa em outros países, conduzindo os procedimentos necessários para a internacionalização segura dos seus ativos.
+                            </p>
                         </div>
-                        <span class="text-sm text-gray-500 font-medium">Estratégica</span>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Estratégica</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
                     </div>
-                    <a href="#contato" class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                        Solicitar Orçamento
-                    </a>
+                </div>
+                
+                <!-- Service Card 7 - Assessoria Jurídica -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="700">
+                    <div class="relative mb-6">
+                        <img src="src/images/1.png" alt="Assessoria Jurídica" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Assessoria Jurídica</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Oferecemos orientação legal personalizada para garantir que a propriedade intelectual da sua empresa esteja protegida e que seus interesses sejam atendidos de forma eficaz.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Personalizada</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 8 - Ações Judiciais -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="800">
+                    <div class="relative mb-6">
+                        <img src="src/images/2png.jpg" alt="Ações Judiciais" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Ações Judiciais em Propriedade Intelectual</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Atuamos em processos judiciais para requerer a abstenção do uso indevido da sua propriedade intelectual e buscar as indenizações cabíveis, bem como na defesa em ações dessa natureza.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Especializada</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 9 - Defesa de Direitos do Consumidor -->
+                <div class="service-card bg-white rounded-2xl p-8 shadow-elegant hover:shadow-professional transform hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" data-aos="fade-up" data-aos-delay="900">
+                    <div class="relative mb-6">
+                        <img src="src/images/3png.jpg" alt="Defesa de Direitos do Consumidor" class="w-full h-48 object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/90 via-navy-700/50 to-transparent rounded-xl"></div>
+                        <div class="absolute bottom-4 left-4 w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                            </div>
+                    <div class="card-content">
+                        <div class="card-description">
+                            <h3 class="text-xl font-serif font-bold text-navy-800 mb-4">Defesa de Direitos do Consumidor</h3>
+                            <p class="text-navy-600 mb-6 leading-relaxed">
+                                Assistimos consumidores em questões como violações de dados pessoais, fraudes bancárias e problemas com companhias aéreas, garantindo a defesa dos seus direitos.
+                            </p>
+                            </div>
+                        <div class="card-footer">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex text-gold-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-navy-500 font-medium">Proteção Total</span>
+                            </div>
+                            <a href="#contato" class="bg-navy-700 hover:bg-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center w-full">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -567,53 +1159,53 @@
                 <!-- Content -->
                 <div class="space-y-8" data-aos="fade-right">
                     <div>
-                        <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
+                        <h2 class="text-4xl sm:text-5xl font-serif font-bold text-navy-800 mb-6">
                             Sobre <span class="gradient-text">Rafael Rodrigues</span>
                         </h2>
-                        <p class="text-xl text-gray-600 leading-relaxed">
+                        <p class="text-xl text-navy-600 leading-relaxed">
                             Advogado especialista em Propriedade Intelectual com mais de 10 anos de experiência 
                             em proteção jurídica para empresas de todos os portes.
                         </p>
-                    </div>
-                    
+                                </div>
+                                  
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-primary-600 text-xl"></i>
-                            </div>
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-gold-600 text-xl"></i>
+                                </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Formação Acadêmica</h3>
-                                <p class="text-gray-600">Pós-graduação em Direito Empresarial e especialização em Propriedade Intelectual</p>
+                                <h3 class="text-lg font-serif font-semibold text-navy-800 mb-2">Formação Acadêmica</h3>
+                                <p class="text-navy-600">Pós-graduação em Direito Empresarial e especialização em Propriedade Intelectual</p>
+                                    </div> 
+                                        </div>
+                                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-gold-600 text-xl"></i>
+                                        </div>
+                            <div>
+                                <h3 class="text-lg font-serif font-semibold text-navy-800 mb-2">Experiência Comprovada</h3>
+                                <p class="text-navy-600">Mais de 500 casos de sucesso em registros de marcas, patentes e proteção de software</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-award text-primary-600 text-xl"></i>
-                            </div>
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-handshake text-gold-600 text-xl"></i>
+                                        </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Experiência Comprovada</h3>
-                                <p class="text-gray-600">Mais de 500 casos de sucesso em registros de marcas, patentes e proteção de software</p>
-                            </div>
+                                <h3 class="text-lg font-serif font-semibold text-navy-800 mb-2">Compromisso Total</h3>
+                                <p class="text-navy-600">Dedicação absoluta a cada caso, garantindo a melhor proteção jurídica para sua empresa</p>
+                                            </div> 
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-handshake text-primary-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Compromisso Total</h3>
-                                <p class="text-gray-600">Dedicação absoluta a cada caso, garantindo a melhor proteção jurídica para sua empresa</p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                                                </div>
+                                                
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contato" class="btn-primary inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <a href="#contato" class="btn-primary inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg shadow-elegant hover:shadow-professional transform hover:-translate-y-1 transition-all duration-300">
                             <i class="fas fa-phone mr-2"></i>
                             Fale Comigo
                         </a>
-                        <a href="#servicos" class="inline-flex items-center justify-center px-8 py-4 bg-gray-100 text-gray-700 font-semibold rounded-full hover:bg-gray-200 transition-all duration-300">
+                        <a href="#servicos" class="inline-flex items-center justify-center px-8 py-4 bg-navy-50 text-navy-700 font-semibold rounded-lg hover:bg-navy-100 transition-all duration-300">
                             <i class="fas fa-briefcase mr-2"></i>
                             Nossos Serviços
                         </a>
@@ -623,37 +1215,37 @@
                 <!-- Image -->
                 <div class="relative" data-aos="fade-left">
                     <div class="relative">
-                        <img src="src/images/novaImgRafa.jpeg" alt="Rafael Rodrigues - Advogado" class="w-full rounded-2xl shadow-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent rounded-2xl"></div>
+                        <img src="src/images/novaImgRafa.jpeg" alt="Rafael Rodrigues - Advogado" class="w-full rounded-2xl shadow-professional">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-800/20 to-transparent rounded-2xl"></div>
                     </div>
                     
-                    <!-- Floating stats -->
-                    <div class="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-xl">
+                    <!-- Professional stats -->
+                    <div class="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-professional border border-gold-200">
                         <div class="text-center">
-                            <div class="text-3xl font-black text-primary-600 mb-1">500+</div>
-                            <div class="text-sm text-gray-600">Casos Resolvidos</div>
-                        </div>
+                            <div class="text-3xl font-serif font-bold text-navy-800 mb-1">500+</div>
+                            <div class="text-sm text-navy-600">Casos Resolvidos</div>
+                                                </div>
                     </div>
-                    
-                    <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl">
+                                                  
+                    <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-professional border border-gold-200">
                         <div class="text-center">
-                            <div class="text-3xl font-black text-secondary-600 mb-1">98%</div>
-                            <div class="text-sm text-gray-600">Taxa de Sucesso</div>
-                        </div>
-                    </div>
-                </div>
+                            <div class="text-3xl font-serif font-bold text-gold-600 mb-1">98%</div>
+                            <div class="text-sm text-navy-600">Taxa de Sucesso</div>
+                                                </div>
+                                                    </div> 
+                                                        </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-700">
+    <section class="py-20 bg-gradient-to-r from-navy-800 to-navy-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl sm:text-5xl font-black text-white mb-6">
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-white mb-6">
                     Números que Falam por Si
                 </h2>
-                <p class="text-xl text-primary-100 max-w-3xl mx-auto">
+                <p class="text-xl text-navy-200 max-w-3xl mx-auto">
                     Resultados concretos que demonstram nossa expertise e comprometimento
                 </p>
             </div>
@@ -661,179 +1253,269 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <!-- Stat 1 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-trophy text-3xl text-white"></i>
+                    <div class="w-20 h-20 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-3xl text-gold-400"></i>
                     </div>
-                    <div class="text-4xl font-black text-white mb-2" data-counter="500">0</div>
-                    <p class="text-primary-100 font-medium">+500 Casos Resolvidos</p>
+                    <div class="text-4xl font-serif font-bold text-white mb-2" data-counter="500">0</div>
+                    <p class="text-navy-200 font-medium">+500 Casos Resolvidos</p>
                 </div>
                 
                 <!-- Stat 2 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-star text-3xl text-white"></i>
-                    </div>
-                    <div class="text-4xl font-black text-white mb-2" data-counter="98">0</div>
-                    <p class="text-primary-100 font-medium">98% de Sucesso</p>
+                    <div class="w-20 h-20 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-3xl text-gold-400"></i>
+                                                        </div>
+                    <div class="text-4xl font-serif font-bold text-white mb-2" data-counter="98">0</div>
+                    <p class="text-navy-200 font-medium">98% de Sucesso</p>
                 </div>
-                
+                                                          
                 <!-- Stat 3 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-users text-3xl text-white"></i>
-                    </div>
-                    <div class="text-4xl font-black text-white mb-2" data-counter="150">0</div>
-                    <p class="text-primary-100 font-medium">+150 Empresas Atendidas</p>
-                </div>
+                    <div class="w-20 h-20 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-3xl text-gold-400"></i>
+                                                        </div>
+                    <div class="text-4xl font-serif font-bold text-white mb-2" data-counter="150">0</div>
+                    <p class="text-navy-200 font-medium">+150 Empresas Atendidas</p>
+                                                            </div> 
                 
                 <!-- Stat 4 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-award text-3xl text-white"></i>
+                    <div class="w-20 h-20 bg-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-3xl text-gold-400"></i>
                     </div>
-                    <div class="text-4xl font-black text-white mb-2" data-counter="10">0</div>
-                    <p class="text-primary-100 font-medium">+10 Anos de Experiência</p>
+                    <div class="text-4xl font-serif font-bold text-white mb-2" data-counter="10">0</div>
+                    <p class="text-navy-200 font-medium">+10 Anos de Experiência</p>
                 </div>
-            </div>
-            
+                                                                </div>
+                                                                
             <!-- Quote -->
             <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="500">
-                <p class="text-primary-100 text-xl italic mb-4">
-                    <i class="fas fa-quote-left text-primary-200 mr-2"></i>
+                <p class="text-navy-200 text-xl italic mb-4">
+                    <i class="fas fa-quote-left text-gold-400 mr-2"></i>
                     "A excelência não é um ato, mas um hábito. Cada caso é tratado com a mesma dedicação e profissionalismo."
-                    <i class="fas fa-quote-right text-primary-200 ml-2"></i>
+                    <i class="fas fa-quote-right text-gold-400 ml-2"></i>
                 </p>
                 <p class="text-white font-semibold">- Rafael Rodrigues</p>
             </div>
         </div>
     </section>
 
+    <!-- Client Profile Section -->
+    <section id="clientes" class="py-20 bg-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+                    Perfil de <span class="text-blue-300">Clientes</span>
+                </h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                    Atendemos empresas e empreendedores que precisam de segurança jurídica em negócios digitais
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-building mr-3 text-blue-300"></i>
+                        Perfil Jurídico e Empresarial
+                                                                     </h3>
+                    <ul class="space-y-4 text-blue-100">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Empresas e empreendedores que precisam de segurança jurídica em negócios digitais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Buscam proteção de marca, patente e direitos autorais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Querem entender como se resguardar em contratos e na presença online</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Inclui startups e game studios, influenciadores digitais, agências de marketing e produtoras de conteúdo</span>
+                        </li>
+                    </ul>
+                                                                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-laptop-code mr-3 text-blue-300"></i>
+                        Foco em Ambiente Digital
+                    </h3>
+                    <ul class="space-y-4 text-blue-100">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Clientes que operam ou planejam operar em plataformas digitais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Demandam assessoria sobre remoção de conteúdo, uso de dados, golpes digitais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-300 mr-3 mt-1"></i>
+                            <span>Procuram advocacia consultiva e estratégica, mais do que apenas conteudistas</span>
+                        </li>
+                    </ul>
+                                                                </div>
+                                                                    </div>
+                                                                    </div>
+</section>
+
     <!-- Contact Section -->
-    <section id="contato" class="py-20 bg-gray-50">
+    <section id="contato" class="py-20 bg-navy-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-navy-800 mb-6">
                     Vamos <span class="gradient-text">Conversar</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-navy-600 max-w-3xl mx-auto">
                     Entre em contato conosco e descubra como podemos proteger sua propriedade intelectual
                 </p>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div class="space-y-8" data-aos="fade-right">
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Informações de Contato</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                    <i class="fab fa-whatsapp text-primary-600 text-xl"></i>
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8" data-aos="fade-right">
+                        <div class="bg-white rounded-2xl p-8 shadow-elegant border border-navy-200">
+                            <h3 class="text-2xl font-serif font-bold text-navy-800 mb-6">Informações de Contato</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-phone text-gold-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-semibold text-navy-800">Telefone</p>
+                                        <p class="text-navy-600">(17) 99722-6677</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-lg font-semibold text-gray-900">WhatsApp</p>
-                                    <p class="text-gray-600">(17) 99722-6677</p>
+                                
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-gold-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-semibold text-navy-800">E-mail</p>
+                                        <p class="text-navy-600">contato@rafaelrodrigues.adv.br</p>
+                                    </div>
                                 </div>
+                                
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-gold-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-semibold text-navy-800">Localização</p>
+                                        <p class="text-navy-600">São Paulo - SP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-8 shadow-elegant border border-navy-200">
+                            <h4 class="text-xl font-serif font-bold text-navy-800 mb-4">Horário de Atendimento</h4>
+                            <div class="space-y-2 text-navy-600">
+                                <p><span class="font-semibold">Segunda a Sexta:</span> 8h às 18h</p>
+                                <p><span class="font-semibold">Sábado:</span> 8h às 12h</p>
+                                <p><span class="font-semibold">Domingo:</span> Fechado</p>
+                            </div>
+                        </div>
+            </div>
+  
+                    <!-- Contact Actions -->
+                    <div class="space-y-8" data-aos="fade-left">
+                        <div class="bg-white rounded-2xl p-8 shadow-elegant border border-navy-200">
+                            <div class="text-center mb-8">
+                                <h3 class="text-3xl font-serif font-bold mb-4 text-navy-800">Entre em Contato</h3>
+                                <p class="text-navy-600 text-lg leading-relaxed">
+                                    Escolha a forma mais conveniente para você. Estamos prontos para ajudar com sua propriedade intelectual.
+                                </p>
                             </div>
                             
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-envelope text-primary-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-lg font-semibold text-gray-900">E-mail</p>
-                                    <p class="text-gray-600">contato@rafaelrodrigues.adv.br</p>
-                                </div>
+                            <div class="space-y-6">
+                                <!-- WhatsApp Button -->
+                                <a href="https://wa.me/5517997226677?text=Olá! Gostaria de saber mais sobre os serviços de propriedade intelectual." 
+                                   target="_blank" 
+                                   class="group flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white py-5 px-8 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105">
+                                    <div class="flex items-center">
+                                        <i class="fab fa-whatsapp text-3xl mr-4 group-hover:animate-pulse"></i>
+                                        <div class="text-left">
+                                            <div class="font-bold text-lg">WhatsApp</div>
+                                            <div class="text-sm opacity-90">Conversa rápida e direta</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-arrow-right ml-4 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                                
+                                <!-- Email Button -->
+                                <a href="mailto:contato@rafaelrodrigues.adv.br?subject=Consulta sobre Propriedade Intelectual" 
+                                   class="group flex items-center justify-center w-full bg-navy-600 hover:bg-navy-700 text-white py-5 px-8 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-envelope text-3xl mr-4 group-hover:animate-bounce"></i>
+                                        <div class="text-left">
+                                            <div class="font-bold text-lg">Enviar E-mail</div>
+                                            <div class="text-sm opacity-90">contato@rafaelrodrigues.adv.br</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-arrow-right ml-4 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
                             </div>
                             
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-primary-600 text-xl"></i>
+                            <!-- Additional Info -->
+                            <div class="mt-8 pt-6 border-t border-navy-200">
+                                <div class="text-center">
+                                    <p class="text-navy-600 text-sm mb-2">Resposta rápida garantida</p>
+                                    <div class="flex justify-center space-x-6 text-navy-500">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-clock mr-2"></i>
+                                            <span class="text-sm">Até 2h</span>
+</div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-shield-alt mr-2"></i>
+                                            <span class="text-sm">100% Seguro</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-user-tie mr-2"></i>
+                                            <span class="text-sm">Especialista</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-lg font-semibold text-gray-900">Localização</p>
-                                    <p class="text-gray-600">São Paulo - SP</p>
-                                </div>
                             </div>
-                        </div>
+</div>
+
                     </div>
-                    
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">Horário de Atendimento</h4>
-                        <div class="space-y-2 text-gray-600">
-                            <p><span class="font-semibold">Segunda a Sexta:</span> 8h às 18h</p>
-                            <p><span class="font-semibold">Sábado:</span> 8h às 12h</p>
-                            <p><span class="font-semibold">Domingo:</span> Fechado</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg" data-aos="fade-left">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Envie sua Mensagem</h3>
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300">
-                        </div>
-                        
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Serviço de Interesse</label>
-                            <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300">
-                                <option value="">Selecione um serviço</option>
-                                <option value="registro-marcas">Registro de Marcas</option>
-                                <option value="patentes">Patentes e Desenhos Industriais</option>
-                                <option value="software">Registro de Software</option>
-                                <option value="direitos-autorais">Direitos Autorais</option>
-                                <option value="contratos">Contratos Empresariais</option>
-                                <option value="consultoria">Consultoria Jurídica</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mensagem</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary w-full py-4 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            Enviar Mensagem
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
-    </section>
+</section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-navy-800 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Company Info -->
                 <div class="space-y-4">
-                    <img src="src/images/Logo Original.png" alt="Rafael Rodrigues" class="h-12 w-auto filter brightness-0 invert">
-                    <p class="text-gray-400 leading-relaxed">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gold-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-balance-scale text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-serif font-bold">Rafael Rodrigues</h1>
+                            <p class="text-sm text-navy-300">Advocacia & Consultoria</p>
+                        </div>
+                    </div>
+                    <p class="text-navy-300 leading-relaxed">
                         Especialistas em propriedade intelectual com compromisso total com a sua causa jurídica.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300">
+                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300">
+                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300">
+                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -841,36 +1523,36 @@
                 
                 <!-- Quick Links -->
                 <div class="space-y-4">
-                    <h4 class="text-lg font-semibold">Links Rápidos</h4>
+                    <h4 class="text-lg font-serif font-semibold">Links Rápidos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">Início</a></li>
-                        <li><a href="#servicos" class="text-gray-400 hover:text-white transition-colors duration-300">Serviços</a></li>
-                        <li><a href="#sobre" class="text-gray-400 hover:text-white transition-colors duration-300">Sobre</a></li>
-                        <li><a href="#contato" class="text-gray-400 hover:text-white transition-colors duration-300">Contato</a></li>
+                        <li><a href="#home" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Início</a></li>
+                        <li><a href="#servicos" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Serviços</a></li>
+                        <li><a href="#sobre" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Sobre</a></li>
+                        <li><a href="#contato" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Contato</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact Info -->
                 <div class="space-y-4">
-                    <h4 class="text-lg font-semibold">Contato</h4>
-                    <div class="space-y-2 text-gray-400">
-                        <p><i class="fab fa-whatsapp mr-2"></i>(17) 99722-6677</p>
+                    <h4 class="text-lg font-serif font-semibold">Contato</h4>
+                    <div class="space-y-2 text-navy-300">
+                        <p><i class="fas fa-phone mr-2"></i>(17) 99722-6677</p>
                         <p><i class="fas fa-envelope mr-2"></i>contato@rafaelrodrigues.adv.br</p>
                         <p><i class="fas fa-map-marker-alt mr-2"></i>São Paulo - SP</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
+    </div>
+</div>
+
+            <div class="border-t border-navy-700 mt-8 pt-8 text-center">
+                <p class="text-navy-300">
                     &copy; 2025 Rafael Rodrigues. Todos os direitos reservados.
                 </p>
             </div>
         </div>
-    </footer>
+</footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 opacity-0 invisible z-40 hover:bg-primary-700">
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-navy-700 text-white rounded-full shadow-elegant hover:shadow-professional transform hover:-translate-y-1 transition-all duration-300 opacity-0 invisible z-40 hover:bg-gold-500">
         <i class="fas fa-arrow-up"></i>
     </button>
 
