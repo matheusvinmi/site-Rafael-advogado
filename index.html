@@ -10,7 +10,7 @@
     <title>Rafael Rodrigues - Advogado Especialista em Propriedade Intelectual</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="src/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="src/images/Ícone Original (2).png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -239,6 +239,39 @@
             }
         }
         
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.75rem;
+                line-height: 1.3;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 1.25rem;
+                line-height: 1.3;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.8rem;
+            }
+        }
+        
         /* NOVO HEADER CSS */
         .new-header {
             position: fixed;
@@ -258,12 +291,41 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
             position: relative;
+            min-height: 70px;
+        }
+        
+        @media (min-width: 640px) {
+            .header-container {
+                padding: 1rem 2rem;
+                min-height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0.4rem 0.6rem;
+                min-height: 60px;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .header-container {
+                padding: 0.3rem 0.5rem;
+                min-height: 55px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .header-container {
+                padding: 0.25rem 0.4rem;
+                min-height: 50px;
+            }
         }
         
         
-        /* Mobile Menu Button (Esquerda) */
+        /* Mobile Menu Button (Direita) */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -272,10 +334,52 @@
             cursor: pointer;
             padding: 0.5rem;
             z-index: 1001;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             justify-content: center;
             align-items: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background-color: #f8fafc;
+        }
+        
+        @media (max-width: 640px) {
+            .mobile-menu-btn {
+                width: 36px;
+                height: 36px;
+                padding: 0.3rem;
+                margin-right: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu-btn {
+                width: 32px;
+                height: 32px;
+                padding: 0.25rem;
+                margin-right: 0.4rem;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .mobile-menu-btn {
+                width: 28px;
+                height: 28px;
+                padding: 0.2rem;
+                margin-right: 0.3rem;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .mobile-menu-btn {
+                width: 26px;
+                height: 26px;
+                padding: 0.15rem;
+                margin-right: 0.25rem;
+            }
         }
         
         .hamburger-line {
@@ -285,6 +389,38 @@
             margin: 3px 0;
             transition: all 0.3s ease;
             border-radius: 2px;
+        }
+        
+        @media (max-width: 640px) {
+            .hamburger-line {
+                width: 20px;
+                height: 2.5px;
+                margin: 2.5px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hamburger-line {
+                width: 16px;
+                height: 2px;
+                margin: 2px 0;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .hamburger-line {
+                width: 14px;
+                height: 1.5px;
+                margin: 1.5px 0;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .hamburger-line {
+                width: 12px;
+                height: 1.5px;
+                margin: 1.5px 0;
+            }
         }
         
         .mobile-menu-btn.active .hamburger-line:nth-child(1) {
@@ -299,6 +435,26 @@
             transform: rotate(45deg) translate(-5px, -6px);
         }
         
+        @media (max-width: 640px) {
+            .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-4px, 5px);
+            }
+            
+            .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-4px, -5px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-3px, 4px);
+            }
+            
+            .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-3px, -4px);
+            }
+        }
+        
         /* Logo */
         .header-logo {
             display: flex;
@@ -308,36 +464,44 @@
         .logo-link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
             text-decoration: none;
             color: inherit;
         }
         
         .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: #1e293b;
-            border-radius: 8px;
+            width: 45%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.25rem;
         }
         
-        .logo-text h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin: 0;
-            font-family: 'Playfair Display', serif;
+        @media (max-width: 640px) {
+            .logo-icon {
+                width: 40%;
+            }
         }
         
-        .logo-text p {
-            font-size: 0.875rem;
-            color: #64748b;
-            margin: 0;
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
         }
+        
+        @media (max-width: 375px) {
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        
         
         /* Desktop Navigation */
         .desktop-nav {
@@ -394,14 +558,22 @@
         /* Mobile Menu Dropdown */
         .mobile-menu {
             position: fixed;
-            top: 80px;
+            top: 70px;
             left: -100%;
             width: 100%;
-            height: calc(100vh - 80px);
+            height: calc(100vh - 70px);
             background: white;
             transition: left 0.3s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             z-index: 999;
+            overflow-y: auto;
+        }
+        
+        @media (min-width: 640px) {
+            .mobile-menu {
+                top: 80px;
+                height: calc(100vh - 80px);
+            }
         }
         
         .mobile-menu.active {
@@ -453,22 +625,38 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap: 0.25rem;
             }
             
             .header-logo {
                 order: 1;
                 justify-content: flex-start;
                 flex: 1;
+                min-width: 0;
             }
             
             .mobile-menu-btn {
                 display: flex;
                 order: 2;
                 margin-left: auto;
+                margin-right: 1rem;
+                flex-shrink: 0;
             }
             
             .desktop-nav {
                 display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .header-container {
+                gap: 0.125rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                gap: 0.0025rem;
             }
         }
         
@@ -527,22 +715,11 @@
     <!-- NOVO HEADER -->
     <header class="new-header">
         <div class="header-container">
-            <!-- Menu Mobile (Esquerda) -->
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-
-            <!-- Logo (Direita em Mobile, Esquerda em Desktop) -->
+            <!-- Logo (Esquerda) -->
             <div class="header-logo">
                 <a href="#home" class="logo-link">
                     <div class="logo-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>Rafael Rodrigues</h1>
-                        <p>Advocacia & Consultoria</p>
+                        <img src="src/images/Logo Reta CMYK (1).png" alt="Rafael Rodrigues Logo" class="w-full h-full object-contain">
                     </div>
                 </a>
             </div>
@@ -553,12 +730,19 @@
                 <a href="#servicos">Serviços</a>
                 <a href="#sobre">Sobre</a>
                 <a href="#timeline">Trajetória</a>
-                <a href="#contato">Contato</a>
+                <a href="#contato">Contatos</a>
                 <a href="#contato" class="cta-btn">
                     <i class="fas fa-phone"></i>
-                    Fale Conosco
+                    Fale Comigo
                 </a>
             </nav>
+
+            <!-- Menu Mobile (Direita) -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
 
         <!-- Menu Mobile Dropdown -->
@@ -568,17 +752,17 @@
                 <a href="#servicos">Serviços</a>
                 <a href="#sobre">Sobre</a>
                 <a href="#timeline">Trajetória</a>
-                <a href="#contato">Contato</a>
+                <a href="#contato">Contatos</a>
                 <a href="#contato" class="mobile-cta">
                     <i class="fas fa-phone"></i>
-                    Fale Conosco
+                    Fale Comigo
                 </a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 pt-16 sm:pt-18 md:pt-20">
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 pt-20 sm:pt-22 md:pt-24">
         <!-- Background Elements -->
         <div class="absolute inset-0 bg-black/30"></div>
         <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -605,13 +789,23 @@
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <a href="#servicos" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 inline-flex items-center justify-center">
                             <i class="fas fa-briefcase mr-2"></i>
-                            Nossos Serviços
+                            Ver Serviços
                         </a>
                         <a href="#contato" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
-                            <i class="fas fa-phone mr-2"></i>
-                            Fale Conosco
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            WhatsApp
                         </a>
-</div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex justify-center lg:justify-start space-x-4 mt-6">
+                        <a href="https://www.instagram.com/rafael_rodrigues.adv/" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rafael-rodrigues0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                            <i class="fab fa-linkedin text-white"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Image -->
@@ -1462,22 +1656,22 @@
                                 </a>
                             </div>
                             
-                            <!-- Additional Info -->
+                            <!-- Especialidades -->
                             <div class="mt-8 pt-6 border-t border-navy-200">
                                 <div class="text-center">
-                                    <p class="text-navy-600 text-sm mb-2">Resposta rápida garantida</p>
-                                    <div class="flex justify-center space-x-6 text-navy-500">
-                                        <div class="flex items-center">
-                                            <i class="fas fa-clock mr-2"></i>
-                                            <span class="text-sm">Até 2h</span>
-</div>
-                                        <div class="flex items-center">
-                                            <i class="fas fa-shield-alt mr-2"></i>
-                                            <span class="text-sm">100% Seguro</span>
+                                    <p class="text-navy-600 text-sm mb-4 font-semibold">Nossas Especialidades</p>
+                                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-navy-500">
+                                        <div class="flex flex-col items-center">
+                                            <i class="fas fa-trademark text-2xl mb-2 text-gold-500"></i>
+                                            <span class="text-xs text-center">Marcas e Patentes</span>
                                         </div>
-                                        <div class="flex items-center">
-                                            <i class="fas fa-user-tie mr-2"></i>
-                                            <span class="text-sm">Especialista</span>
+                                        <div class="flex flex-col items-center">
+                                            <i class="fas fa-code text-2xl mb-2 text-gold-500"></i>
+                                            <span class="text-xs text-center">Software e Direitos Autorais</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <i class="fas fa-handshake text-2xl mb-2 text-gold-500"></i>
+                                            <span class="text-xs text-center">Contratos Empresariais</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1491,60 +1685,56 @@
 </section>
 
     <!-- Footer -->
-    <footer class="bg-navy-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <footer class="bg-navy-800 text-white py-6 sm:py-8 md:py-10 lg:py-12">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 <!-- Company Info -->
                 <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gold-500 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-balance-scale text-white text-lg"></i>
-                        </div>
-                        <div>
-                            <h1 class="text-xl font-serif font-bold">Rafael Rodrigues</h1>
-                            <p class="text-sm text-navy-300">Advocacia & Consultoria</p>
+                    <div class="flex justify-center items-center mb-3 sm:mb-4">
+                        <div class="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 rounded-lg flex items-left justify-center">
+                            <img src="src/images/Logo Reta Branca.png" alt="Rafael Rodrigues Logo" class="w-full h-full object-contain">
                         </div>
                     </div>
-                    <p class="text-navy-300 leading-relaxed">
+                    <p class="text-sm sm:text-base text-navy-300 leading-relaxed text-center sm:text-left">
                         Especialistas em propriedade intelectual com compromisso total com a sua causa jurídica.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
-                            <i class="fab fa-whatsapp"></i>
+                    <div class="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
+                        <a href="https://wa.me/5517997226677" class="w-8 h-8 sm:w-10 sm:h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
+                            <i class="fab fa-whatsapp text-sm sm:text-base"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
-                            <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/rafael-rodrigues0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-8 h-8 sm:w-10 sm:h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
+                            <i class="fab fa-linkedin text-sm sm:text-base"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/rafael_rodrigues.adv/" class="w-8 h-8 sm:w-10 sm:h-10 bg-navy-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors duration-300">
+                            <i class="fab fa-instagram text-sm sm:text-base"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Quick Links -->
-                <div class="space-y-4">
-                    <h4 class="text-lg font-serif font-semibold">Links Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Início</a></li>
-                        <li><a href="#servicos" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Serviços</a></li>
-                        <li><a href="#sobre" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Sobre</a></li>
-                        <li><a href="#contato" class="text-navy-300 hover:text-gold-400 transition-colors duration-300">Contato</a></li>
+                <div class="space-y-3 sm:space-y-4">
+                    <h4 class="text-base sm:text-lg font-serif font-semibold text-center sm:text-left">Links Rápidos</h4>
+                    <ul class="space-y-2 flex flex-col items-center sm:items-start">
+                        <li><a href="#home" class="text-sm sm:text-base text-navy-300 hover:text-gold-400 transition-colors duration-300">Início</a></li>
+                        <li><a href="#servicos" class="text-sm sm:text-base text-navy-300 hover:text-gold-400 transition-colors duration-300">Serviços</a></li>
+                        <li><a href="#sobre" class="text-sm sm:text-base text-navy-300 hover:text-gold-400 transition-colors duration-300">Sobre</a></li>
+                        <li><a href="#contato" class="text-sm sm:text-base text-navy-300 hover:text-gold-400 transition-colors duration-300">Contato</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact Info -->
-                <div class="space-y-4">
-                    <h4 class="text-lg font-serif font-semibold">Contato</h4>
-                    <div class="space-y-2 text-navy-300">
-                        <p><i class="fas fa-phone mr-2"></i>(17) 99722-6677</p>
-                        <p><i class="fas fa-envelope mr-2"></i>contato@rafaelrodrigues.adv.br</p>
-                        <p><i class="fas fa-map-marker-alt mr-2"></i>São Paulo - SP</p>
+                <div class="space-y-3 sm:space-y-4">
+                    <h4 class="text-base sm:text-lg font-serif font-semibold text-center sm:text-left">Contato</h4>
+                    <div class="space-y-2 text-navy-300 text-center sm:text-left">
+                        <p class="text-sm sm:text-base"><i class="fas fa-phone mr-2"></i>(17) 99722-6677</p>
+                        <p class="text-sm sm:text-base"><i class="fas fa-envelope mr-2"></i>contato@rafaelrodrigues.adv.br</p>
+                        <p class="text-sm sm:text-base"><i class="fas fa-map-marker-alt mr-2"></i>Santa Fé do Sul - SP</p>
                     </div>
     </div>
 </div>
 
-            <div class="border-t border-navy-700 mt-8 pt-8 text-center">
-                <p class="text-navy-300">
+            <div class="border-t border-navy-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
+                <p class="text-sm sm:text-base text-navy-300">
                     &copy; 2025 Rafael Rodrigues. Todos os direitos reservados.
                 </p>
             </div>

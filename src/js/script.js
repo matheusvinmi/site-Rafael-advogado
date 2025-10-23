@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         counters.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-counter'));
-            const duration = 2500; // 2.5 seconds
+            const duration = 1300; // 1.3 seconds
             const increment = target / (duration / 16); // 60fps
             let current = 0;
             
